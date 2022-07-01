@@ -2,9 +2,9 @@ package org.example.model;
 
 import java.time.LocalDateTime;
 
-public class TransferModel {
-    private CardModel fromCard;
-    private CardModel toCard;
+public class TransferModel extends Transaction {
+    private AccountModel fromAccountModel;
+    private AccountModel toAccountModel;
     private Integer amount;
     private LocalDateTime dateTime;
     private Integer reference;
@@ -12,28 +12,28 @@ public class TransferModel {
     public TransferModel() {
     }
 
-    public TransferModel(CardModel fromCard, CardModel toCard, Integer amount, LocalDateTime dateTime, Integer reference) {
-        this.fromCard = fromCard;
-        this.toCard = toCard;
+    public TransferModel(AccountModel fromAccountModel, AccountModel toAccountModel, Integer amount, LocalDateTime dateTime, Integer reference) {
+        this.fromAccountModel = fromAccountModel;
+        this.toAccountModel = toAccountModel;
         this.amount = amount;
         this.dateTime = dateTime;
         this.reference = reference;
     }
 
-    public CardModel getFromCard() {
-        return fromCard;
+    public AccountModel getFromAccount() {
+        return fromAccountModel;
     }
 
-    public void setFromCard(CardModel fromCard) {
-        this.fromCard = fromCard;
+    public void setFromAccount(AccountModel fromAccountModel) {
+        this.fromAccountModel = fromAccountModel;
     }
 
-    public CardModel getToCard() {
-        return toCard;
+    public AccountModel getToAccount() {
+        return toAccountModel;
     }
 
-    public void setToCard(CardModel toCard) {
-        this.toCard = toCard;
+    public void setToAccount(AccountModel toAccountModel) {
+        this.toAccountModel = toAccountModel;
     }
 
     public Integer getAmount() {
@@ -58,5 +58,18 @@ public class TransferModel {
 
     public void setReference(Integer reference) {
         this.reference = reference;
+    }
+
+    @Override
+    public String toString() {
+        return "TransferModel{" +
+                "actor=" + getActor() +
+                ", fromCard=" + fromAccountModel +
+                ", toCard=" + toAccountModel +
+                ", amount=" + amount +
+                ", dateTime=" + dateTime +
+                ", reference=" + reference +
+                ", happenedAt=" + getHappenedAt() +
+                '}';
     }
 }

@@ -1,33 +1,33 @@
 package org.example.repository;
 
-import org.example.data.CardData;
-import org.example.model.CardModel;
+import org.example.data.AccountData;
+import org.example.model.AccountModel;
 
 import java.util.List;
 
 public class CardRepository {
-    private List<CardModel> cards = CardData.getAllCards();
+    private List<AccountModel> accountModels = AccountData.getCardsFromCSV();
 
-    public List<CardModel> getCards() {
-        return cards;
+    public List<AccountModel> getAccounts() {
+        return accountModels;
     }
 
-    public void setCards(List<CardModel> cards) {
-        this.cards = cards;
+    public void setAccounts(List<AccountModel> accountModels) {
+        this.accountModels = accountModels;
     }
 
-    public CardModel getCardByNumber(String cardNumber) {
-        return cards.stream()
-                .filter(card -> card.getNumber().equals(cardNumber))
+    public AccountModel getAccountByNumber(String accountNumber) {
+        return accountModels.stream()
+                .filter(account -> account.getNumber().equals(accountNumber))
                 .findFirst()
                 .orElse(null);
     }
 
-    public boolean isExistByCardNumber(String cardNumber) {
-        return cards.stream().anyMatch(card -> card.getNumber().equals(cardNumber));
+    public boolean isExistByCardNumber(String accountNumber) {
+        return accountModels.stream().anyMatch(account -> account.getNumber().equals(accountNumber));
     }
 
-    public boolean isExistByCardNumberAndPin(String cardNumber, String pin) {
-        return cards.stream().anyMatch(card -> card.getNumber().equals(cardNumber) && card.getPin().equals(pin));
+    public boolean isExistByCardNumberAndPin(String accountNumber, String pin) {
+        return accountModels.stream().anyMatch(account -> account.getNumber().equals(accountNumber) && account.getPin().equals(pin));
     }
 }

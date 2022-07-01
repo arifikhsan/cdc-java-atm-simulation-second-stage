@@ -38,9 +38,9 @@ public class TransferInputAccountScreen implements ScreenContract {
                 continue;
             }
 
-            var destinationAccount = cardRepository.getCardByNumber(destinationAccountNumber);
-            transferModel.setFromCard(loggedInCard);
-            transferModel.setToCard(destinationAccount);
+            var destinationAccount = cardRepository.getAccountByNumber(destinationAccountNumber);
+            transferModel.setFromAccount(loggedInCard);
+            transferModel.setToAccount(destinationAccount);
             gotoTransferInputAmountScreen();
             return;
         }

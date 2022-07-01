@@ -41,7 +41,7 @@ public class TransferConfirmationScreen implements ScreenContract {
     private void transferMoney() {
         transferRepository.getTransfers().add(transferModel);
         loggedInCard.setBalance(loggedInCard.getBalance() - transferModel.getAmount());
-        transferModel.getToCard().setBalance(transferModel.getToCard().getBalance() + transferModel.getAmount());
+        transferModel.getToAccount().setBalance(transferModel.getToAccount().getBalance() + transferModel.getAmount());
     }
 
     private boolean isValidOption(String option) {
@@ -64,7 +64,7 @@ public class TransferConfirmationScreen implements ScreenContract {
 
     private void showSummary() {
         printHorizontalLine();
-        println("Destination Account: " + transferModel.getToCard().getNumber());
+        println("Destination Account: " + transferModel.getToAccount().getNumber());
         println("Amount: $" + transferModel.getAmount());
         println("Reference Number: " + transferModel.getReference());
         printHorizontalLine();
