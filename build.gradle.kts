@@ -12,6 +12,7 @@ repositories {
 dependencies {
     testImplementation("org.junit.jupiter:junit-jupiter-api:5.8.2")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.8.2")
+    implementation("com.diogonunes:JColor:5.5.1")
 }
 
 tasks.getByName<Test>("test") {
