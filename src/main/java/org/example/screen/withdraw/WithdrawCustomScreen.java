@@ -15,7 +15,9 @@ import static org.example.util.NumberUtil.isMultiplyOf10;
 import static org.example.util.StringUtil.isValidAmountOfMoney;
 import static org.example.util.SystemUtil.print;
 import static org.example.util.SystemUtil.printEmptyLine;
+import static org.example.util.TimeUtil.getCurrentTime;
 
+@SuppressWarnings("DuplicatedCode")
 public class WithdrawCustomScreen implements ScreenContract {
     @Override
     public void show() {
@@ -61,8 +63,14 @@ public class WithdrawCustomScreen implements ScreenContract {
 
     private void saveWithdrawData(int amount) {
         loggedInCard.setBalance(loggedInCard.getBalance() - amount);
-        withdrawModel = new WithdrawModel(LocalDateTime.now(), amount, loggedInCard.getBalance(), loggedInCard);
-        withdrawRepository.getWithdraws().add(withdrawModel);
+        withdrawModel = new WithdrawModel();
+        withdrawModel.setActor(loggedInCard);
+        withdrawModel.setHappenedAt(getCurrentTime());
+        withdrawModel.setCard(loggedInCard);
+        withdrawModel.setAmount(amount);
+        withdrawModel.setBalance(loggedInCard.getBalance());
+        withdrawModel.setDatetime(getCurrentTime());
+        transactionRepository.getTransactions().add(withdrawModel);
     }
 
     private boolean isBalanceEnough(int withdrawAmount) {

@@ -1,8 +1,10 @@
 package org.example.router;
 
+import org.example.screen.BalanceScreen;
 import org.example.screen.LoginScreen;
 import org.example.screen.TransactionScreen;
 import org.example.screen.WelcomeScreen;
+import org.example.screen.history.TransactionHistoryScreen;
 import org.example.screen.transfer.*;
 import org.example.screen.withdraw.WithdrawCustomScreen;
 import org.example.screen.withdraw.WithdrawScreen;
@@ -27,6 +29,14 @@ public class Router {
 
     public static void gotoTransferScreen() {
         new TransferInputAccountScreen().show();
+    }
+
+    public static void gotoTransactionHistoryScreen() {
+        new TransactionHistoryScreen().show();
+    }
+
+    public static void gotoBalanceScreen() {
+        new BalanceScreen().show();
     }
 
     public static void gotoWithdrawCustomScreen() {

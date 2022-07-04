@@ -11,7 +11,9 @@ import static org.example.components.MessageComponent.*;
 import static org.example.router.Router.gotoWithdrawCustomScreen;
 import static org.example.router.Router.gotoWithdrawSummaryScreen;
 import static org.example.util.SystemUtil.*;
+import static org.example.util.TimeUtil.getCurrentTime;
 
+@SuppressWarnings("DuplicatedCode")
 public class WithdrawScreen implements ScreenContract {
     @Override
     public void show() {
@@ -58,8 +60,14 @@ public class WithdrawScreen implements ScreenContract {
 
     private void saveWithdrawData(Integer amount) {
         loggedInCard.setBalance(loggedInCard.getBalance() - amount);
-        withdrawModel = new WithdrawModel(LocalDateTime.now(), amount, loggedInCard.getBalance(), loggedInCard);
-        withdrawRepository.getWithdraws().add(withdrawModel);
+        withdrawModel = new WithdrawModel();
+        withdrawModel.setActor(loggedInCard);
+        withdrawModel.setHappenedAt(getCurrentTime());
+        withdrawModel.setCard(loggedInCard);
+        withdrawModel.setAmount(amount);
+        withdrawModel.setBalance(loggedInCard.getBalance());
+        withdrawModel.setDatetime(getCurrentTime());
+        transactionRepository.getTransactions().add(withdrawModel);
     }
 
     private Boolean isBalanceEnough(Integer amount) {

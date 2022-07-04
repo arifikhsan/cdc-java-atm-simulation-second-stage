@@ -1,8 +1,7 @@
 package org.example.util;
 
 import static com.diogonunes.jcolor.Ansi.colorize;
-import static com.diogonunes.jcolor.Attribute.GREEN_TEXT;
-import static com.diogonunes.jcolor.Attribute.RED_TEXT;
+import static com.diogonunes.jcolor.Attribute.*;
 import static org.example.components.MessageComponent.printGoodByeMessage;
 
 public class SystemUtil {
@@ -24,6 +23,10 @@ public class SystemUtil {
 
     public static void printlnGreenText(String string) {
         println(colorize(string, GREEN_TEXT()));
+    }
+
+    public static void printlnBlueText(String string) {
+        println(colorize(string, BLUE_TEXT()));
     }
 
     public static void printEmptyLine() {

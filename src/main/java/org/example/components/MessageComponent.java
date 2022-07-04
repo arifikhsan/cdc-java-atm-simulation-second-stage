@@ -24,6 +24,22 @@ public class MessageComponent {
         println("======================================");
     }
 
+    public static void printTransactionHistoryMessage() {
+        printDoubleEmptyLine();
+        println("======================================");
+        println("||          Very Good ATM           ||");
+        println("======================================");
+        println("||       Transaction History        ||");
+        println("======================================");
+    }
+
+    public static void printBalanceMessage() {
+        printDoubleEmptyLine();
+        println("======================================");
+        println("||     Balance   |   Very Good ATM  ||");
+        println("======================================");
+    }
+
     public static void printWithdrawMessage() {
         printDoubleEmptyLine();
         println("======================================");
@@ -111,6 +127,16 @@ public class MessageComponent {
 
     public static void printHorizontalLine() {
         println("======================================");
+    }
+
+    public static void printMessage(String message) {
+        printInfoLine();
+        printlnBlueText(message);
+        printInfoLine();
+    }
+
+    public static void printInfoLine() {
+        printlnBlueText("======================================");
     }
 
     public static void printSuccessLine() {

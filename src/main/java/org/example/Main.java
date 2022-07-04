@@ -4,8 +4,7 @@ import org.example.model.AccountModel;
 import org.example.model.TransferModel;
 import org.example.model.WithdrawModel;
 import org.example.repository.CardRepository;
-import org.example.repository.TransferRepository;
-import org.example.repository.WithdrawRepository;
+import org.example.repository.TransactionRepository;
 
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
@@ -18,12 +17,8 @@ public class Main {
     public static WithdrawModel withdrawModel = new WithdrawModel();
     public static TransferModel transferModel = new TransferModel();
     public static CardRepository cardRepository = new CardRepository();
-    public static WithdrawRepository withdrawRepository = new WithdrawRepository();
-    public static TransferRepository transferRepository = new TransferRepository();
-
-    // todo: add transaction repository
-
-    public static DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm a");
+    public static TransactionRepository transactionRepository = new TransactionRepository();
+    public static DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss a");
 
     public static void main(String[] args) {
         gotoWelcomeScreen();

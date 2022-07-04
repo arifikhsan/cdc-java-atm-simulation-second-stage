@@ -2,8 +2,6 @@ package org.example.screen.transfer;
 
 import org.example.screen.contract.ScreenContract;
 
-import java.time.LocalDateTime;
-
 import static org.example.Main.scanner;
 import static org.example.Main.transferModel;
 import static org.example.components.MessageComponent.printErrorMessage;
@@ -12,6 +10,7 @@ import static org.example.router.Router.gotoTransferConfirmationScreen;
 import static org.example.util.NumberUtil.generateRandomSixDigitNumber;
 import static org.example.util.NumberUtil.isAStringNumber;
 import static org.example.util.SystemUtil.println;
+import static org.example.util.TimeUtil.getCurrentTime;
 
 public class TransferInputReferenceScreen implements ScreenContract {
     @Override
@@ -37,7 +36,7 @@ public class TransferInputReferenceScreen implements ScreenContract {
             }
 
             transferModel.setReference(referenceNumber);
-            transferModel.setDateTime(LocalDateTime.now());
+            transferModel.setDateTime(getCurrentTime());
             gotoTransferConfirmationScreen();
             return;
         }

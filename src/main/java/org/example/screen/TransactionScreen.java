@@ -5,8 +5,7 @@ import static java.lang.Integer.parseInt;
 import static org.example.Main.loggedInCard;
 import static org.example.Main.scanner;
 import static org.example.components.MessageComponent.*;
-import static org.example.router.Router.gotoTransferScreen;
-import static org.example.router.Router.gotoWithdrawScreen;
+import static org.example.router.Router.*;
 import static org.example.util.SystemUtil.*;
 
 public class TransactionScreen implements ScreenContract {
@@ -22,7 +21,7 @@ public class TransactionScreen implements ScreenContract {
 
             if (option.isEmpty()) option = "5";
 
-            if (isInvalidInput(option)) {
+            if (!isValidInput(option)) {
                 printInvalidOptionMessage(option);
                 continue;
             }
@@ -37,11 +36,19 @@ public class TransactionScreen implements ScreenContract {
                     continue;
                 }
                 case 3: {
+                    gotoBalanceScreen();
+                    continue;
+                }
+                case 4: {
+                    gotoTransactionHistoryScreen();
+                    continue;
+                }
+                case 5: {
                     loggedInCard = null;
                     return;
                 }
-                case 4: exitApp();
-                case 5: {
+                case 6: exitApp();
+                case 7: {
                     continue;
                 }
                 default: {
@@ -63,14 +70,16 @@ public class TransactionScreen implements ScreenContract {
         printHorizontalLine();
         println("1. Withdraw");
         println("2. Transfer");
-        println("3. Logout");
-        println("4. Exit");
-        println("5. Do nothing");
+        println("3. Check Balance");
+        println("4. Transaction History");
+        println("5. Logout");
+        println("6. Exit");
+        println("7. Do nothing");
         printHorizontalLine();
-        print("Select transaction [5]: ");
+        print("Select transaction [7]: ");
     }
 
-    private Boolean isInvalidInput(String input) {
-        return !input.matches("[1-5]");
+    private Boolean isValidInput(String input) {
+        return input.matches("[1-7]");
     }
 }
