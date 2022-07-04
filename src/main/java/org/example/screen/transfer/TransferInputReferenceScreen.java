@@ -2,10 +2,10 @@ package org.example.screen.transfer;
 
 import org.example.screen.contract.ScreenContract;
 
-import static org.example.Main.scanner;
-import static org.example.Main.transferModel;
 import static org.example.components.MessageComponent.printErrorMessage;
 import static org.example.components.MessageComponent.printTransferInputReferenceMessage;
+import static org.example.data.AppData.scanner;
+import static org.example.data.AppData.transferModel;
 import static org.example.router.Router.gotoTransferConfirmationScreen;
 import static org.example.util.NumberUtil.generateRandomSixDigitNumber;
 import static org.example.util.NumberUtil.isAStringNumber;

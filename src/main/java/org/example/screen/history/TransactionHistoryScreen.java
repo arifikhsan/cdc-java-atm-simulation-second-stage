@@ -6,9 +6,9 @@ import org.example.model.WithdrawModel;
 import org.example.screen.contract.ScreenContract;
 
 import static java.lang.Integer.parseInt;
-import static org.example.Main.*;
 import static org.example.components.MessageComponent.*;
 import static org.example.components.PrinterComponent.*;
+import static org.example.data.AppData.*;
 import static org.example.util.SystemUtil.*;
 
 @SuppressWarnings("DuplicatedCode")

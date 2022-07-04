@@ -3,8 +3,8 @@ package org.example.screen.transfer;
 import org.example.screen.contract.ScreenContract;
 
 import static java.lang.Integer.parseInt;
-import static org.example.Main.*;
 import static org.example.components.MessageComponent.*;
+import static org.example.data.AppData.*;
 import static org.example.util.NumberUtil.isAStringNumber;
 import static org.example.util.NumberUtil.isPositive;
 import static org.example.util.SystemUtil.*;

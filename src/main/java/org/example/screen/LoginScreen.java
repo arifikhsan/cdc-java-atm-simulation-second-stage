@@ -2,8 +2,8 @@ package org.example.screen;
 
 import org.example.screen.contract.ScreenContract;
 
-import static org.example.Main.*;
 import static org.example.components.MessageComponent.*;
+import static org.example.data.AppData.*;
 import static org.example.router.Router.gotoTransactionScreen;
 import static org.example.util.NumberUtil.isAStringNumber;
 import static org.example.util.StringUtil.isExact6Digits;

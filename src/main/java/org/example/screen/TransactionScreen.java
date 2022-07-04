@@ -1,10 +1,11 @@
 package org.example.screen;
 
 import org.example.screen.contract.ScreenContract;
+
 import static java.lang.Integer.parseInt;
-import static org.example.Main.loggedInCard;
-import static org.example.Main.scanner;
 import static org.example.components.MessageComponent.*;
+import static org.example.data.AppData.loggedInCard;
+import static org.example.data.AppData.scanner;
 import static org.example.router.Router.*;
 import static org.example.util.SystemUtil.*;
 

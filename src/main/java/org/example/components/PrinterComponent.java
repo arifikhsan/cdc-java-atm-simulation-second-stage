@@ -4,8 +4,9 @@ import org.example.model.BalanceInquiryModel;
 import org.example.model.TransferModel;
 import org.example.model.WithdrawModel;
 
-import static org.example.Main.dateTimeFormatter;
-import static org.example.util.SystemUtil.*;
+import static org.example.data.AppData.dateTimeFormatter;
+import static org.example.util.SystemUtil.printEmptyLine;
+import static org.example.util.SystemUtil.printlnBlueText;
 
 public class PrinterComponent {
     public static void printBalance(BalanceInquiryModel balanceModel) {

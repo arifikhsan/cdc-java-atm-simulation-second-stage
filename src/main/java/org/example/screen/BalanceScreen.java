@@ -4,9 +4,8 @@ import org.example.model.BalanceInquiryModel;
 import org.example.screen.contract.ScreenContract;
 
 import static java.lang.Integer.parseInt;
-import static org.example.Main.*;
 import static org.example.components.MessageComponent.*;
-import static org.example.components.MessageComponent.printInvalidOptionMessage;
+import static org.example.data.AppData.*;
 import static org.example.util.SystemUtil.*;
 import static org.example.util.TimeUtil.getCurrentTime;
 
