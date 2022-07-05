@@ -1,5 +1,6 @@
 package org.example.screen.transfer;
 
+import org.example.repository.TransferRepository;
 import org.example.screen.contract.ScreenContract;
 
 import static java.lang.Integer.parseInt;
@@ -9,7 +10,6 @@ import static org.example.router.Router.gotoSummaryScreen;
 import static org.example.util.NumberUtil.isAStringNumber;
 import static org.example.util.NumberUtil.isPositive;
 import static org.example.util.SystemUtil.*;
-import static org.example.util.TimeUtil.getCurrentTime;
 
 public class TransferConfirmationScreen implements ScreenContract {
     @Override
@@ -41,8 +41,7 @@ public class TransferConfirmationScreen implements ScreenContract {
 
     private void transferMoney() {
         transferModel.setActor(loggedInCard);
-        transferModel.setHappenedAt(getCurrentTime());
-        transactionRepository.getTransactions().add(transferModel);
+        TransferRepository.save(transferModel);
 
         // move money from source account to destination account
         loggedInCard.setBalance(loggedInCard.getBalance() - transferModel.getAmount());

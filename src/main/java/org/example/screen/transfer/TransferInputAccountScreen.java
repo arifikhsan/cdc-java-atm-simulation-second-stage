@@ -1,5 +1,6 @@
 package org.example.screen.transfer;
 
+import org.example.repository.AccountRepository;
 import org.example.screen.contract.ScreenContract;
 
 import static org.example.components.MessageComponent.printErrorMessage;
@@ -38,7 +39,7 @@ public class TransferInputAccountScreen implements ScreenContract {
                 continue;
             }
 
-            var destinationAccount = cardRepository.getAccountByNumber(destinationAccountNumber);
+            var destinationAccount = AccountRepository.getAccountByNumber(destinationAccountNumber);
             transferModel.setFromAccount(loggedInCard);
             transferModel.setToAccount(destinationAccount);
             gotoTransferInputAmountScreen();
@@ -51,6 +52,6 @@ public class TransferInputAccountScreen implements ScreenContract {
     }
 
     private boolean isAccountExist(String destinationAccount) {
-        return cardRepository.isExistByCardNumber(destinationAccount);
+        return AccountRepository.isExistByCardNumber(destinationAccount);
     }
 }

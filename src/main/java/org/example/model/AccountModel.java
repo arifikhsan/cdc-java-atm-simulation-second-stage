@@ -1,14 +1,39 @@
 package org.example.model;
 
 import java.util.Objects;
+import java.util.UUID;
 
 public class AccountModel {
+    private UUID id;
     private String name;
     private String number;
     private String pin;
     private Integer balance;
 
+    public AccountModel(String name, String number, String pin, Integer balance) {
+        this.name = name;
+        this.number = number;
+        this.pin = pin;
+        this.balance = balance;
+    }
+
+    public AccountModel(UUID id, String name, String number, String pin, Integer balance) {
+        this.id = id;
+        this.name = name;
+        this.number = number;
+        this.pin = pin;
+        this.balance = balance;
+    }
+
     public AccountModel() {
+    }
+
+    public UUID getId() {
+        return id;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
     }
 
     public String getName() {

@@ -9,30 +9,30 @@ import static org.example.util.SystemUtil.printEmptyLine;
 import static org.example.util.SystemUtil.printlnBlueText;
 
 public class PrinterComponent {
-    public static void printBalance(BalanceInquiryModel balanceModel) {
-        printlnBlueText("=========== Balance Inquiry ==========");
+    public static void printBalance(Integer number, BalanceInquiryModel balanceModel) {
+        printlnBlueText("=[" + number + "]======= Balance Inquiry ==========");
         printlnBlueText("By: " + balanceModel.getActor().getName());
         printlnBlueText("Balance: $" + balanceModel.getBalance());
-        printlnBlueText("Account Name: " + balanceModel.getCard().getName());
-        printlnBlueText("Account Number: " + balanceModel.getCard().getNumber());
+        printlnBlueText("Account Name: " + balanceModel.getAccount().getName());
+        printlnBlueText("Account Number: " + balanceModel.getAccount().getNumber());
         printlnBlueText("Happened At: " + balanceModel.getHappenedAt().format(dateTimeFormatter));
         printlnBlueText("======================================");
         printEmptyLine();
     }
 
-    public static void printWithdraw(WithdrawModel withdrawModel) {
-        printlnBlueText("============== Withdraw ==============");
+    public static void printWithdraw(Integer number, WithdrawModel withdrawModel) {
+        printlnBlueText("=[" + number + "]=========== Withdraw ==============");
         printlnBlueText("Amount: $" + withdrawModel.getAmount());
         printlnBlueText("By: " + withdrawModel.getActor().getName());
-        printlnBlueText("Account Name: " + withdrawModel.getCard().getName());
-        printlnBlueText("Account Number: " + withdrawModel.getCard().getNumber());
+        printlnBlueText("Account Name: " + withdrawModel.getAccount().getName());
+        printlnBlueText("Account Number: " + withdrawModel.getAccount().getNumber());
         printlnBlueText("Happened At: " + withdrawModel.getHappenedAt().format(dateTimeFormatter));
         printlnBlueText("======================================");
         printEmptyLine();
     }
 
-    public static void printTransfer(TransferModel transferModel) {
-        printlnBlueText("============== Transfer ==============");
+    public static void printTransfer(Integer number, TransferModel transferModel) {
+        printlnBlueText("=[" + number + "]=========== Transfer ==============");
         printlnBlueText("Amount: $" + transferModel.getAmount());
         printlnBlueText("By: " + transferModel.getActor().getName());
         printlnBlueText("=== From ===");

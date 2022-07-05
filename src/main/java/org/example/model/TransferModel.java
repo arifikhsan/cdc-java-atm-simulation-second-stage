@@ -1,6 +1,7 @@
 package org.example.model;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 public class TransferModel extends Transaction {
     private AccountModel fromAccountModel;
@@ -13,6 +14,15 @@ public class TransferModel extends Transaction {
     }
 
     public TransferModel(AccountModel fromAccountModel, AccountModel toAccountModel, Integer amount, LocalDateTime dateTime, Integer reference) {
+        this.fromAccountModel = fromAccountModel;
+        this.toAccountModel = toAccountModel;
+        this.amount = amount;
+        this.dateTime = dateTime;
+        this.reference = reference;
+    }
+
+    public TransferModel(UUID id, AccountModel actor, LocalDateTime happenedAt, AccountModel fromAccountModel, AccountModel toAccountModel, Integer amount, LocalDateTime dateTime, Integer reference) {
+        super(id, actor, happenedAt);
         this.fromAccountModel = fromAccountModel;
         this.toAccountModel = toAccountModel;
         this.amount = amount;

@@ -1,6 +1,7 @@
 package org.example.screen.withdraw;
 
 import org.example.model.WithdrawModel;
+import org.example.repository.WithdrawRepository;
 import org.example.screen.contract.ScreenContract;
 
 import static java.lang.Integer.parseInt;
@@ -62,12 +63,11 @@ public class WithdrawCustomScreen implements ScreenContract {
         loggedInCard.setBalance(loggedInCard.getBalance() - amount);
         withdrawModel = new WithdrawModel();
         withdrawModel.setActor(loggedInCard);
-        withdrawModel.setHappenedAt(getCurrentTime());
-        withdrawModel.setCard(loggedInCard);
+        withdrawModel.setAccount(loggedInCard);
         withdrawModel.setAmount(amount);
         withdrawModel.setBalance(loggedInCard.getBalance());
         withdrawModel.setDatetime(getCurrentTime());
-        transactionRepository.getTransactions().add(withdrawModel);
+        WithdrawRepository.save(withdrawModel);
     }
 
     private boolean isBalanceEnough(int withdrawAmount) {

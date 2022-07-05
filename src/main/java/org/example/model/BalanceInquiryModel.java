@@ -1,12 +1,21 @@
 package org.example.model;
 
+import java.time.LocalDateTime;
+import java.util.UUID;
+
 public class BalanceInquiryModel extends Transaction {
     private Integer balance;
-    private AccountModel card;
+    private AccountModel account;
 
-    public BalanceInquiryModel(Integer balance, AccountModel card) {
+    public BalanceInquiryModel(Integer balance, AccountModel account) {
         this.balance = balance;
-        this.card = card;
+        this.account = account;
+    }
+
+    public BalanceInquiryModel(UUID id, AccountModel actor, LocalDateTime happenedAt, Integer balance, AccountModel account) {
+        super(id, actor, happenedAt);
+        this.balance = balance;
+        this.account = account;
     }
 
     public BalanceInquiryModel() {
@@ -20,12 +29,12 @@ public class BalanceInquiryModel extends Transaction {
         this.balance = balance;
     }
 
-    public AccountModel getCard() {
-        return card;
+    public AccountModel getAccount() {
+        return account;
     }
 
-    public void setCard(AccountModel card) {
-        this.card = card;
+    public void setAccount(AccountModel account) {
+        this.account = account;
     }
 
     @Override
@@ -33,7 +42,7 @@ public class BalanceInquiryModel extends Transaction {
         return "BalanceInquiryModel{" +
                 "actor=" + getActor() +
                 "balance=" + balance +
-                ", card=" + card +
+                ", card=" + account +
                 ", happenedAt=" + getHappenedAt() +
                 '}';
     }

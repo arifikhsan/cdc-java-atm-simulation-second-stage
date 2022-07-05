@@ -1,18 +1,27 @@
 package org.example.model;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 public class WithdrawModel extends Transaction {
-    private LocalDateTime datetime;
     private Integer amount;
     private Integer balance;
-    private AccountModel card;
+    private LocalDateTime datetime;
+    private AccountModel account;
 
-    public WithdrawModel(LocalDateTime datetime, Integer amount, Integer balance, AccountModel card) {
-        this.datetime = datetime;
+    public WithdrawModel(Integer amount, Integer balance, LocalDateTime datetime, AccountModel account) {
         this.amount = amount;
         this.balance = balance;
-        this.card = card;
+        this.datetime = datetime;
+        this.account = account;
+    }
+
+    public WithdrawModel(UUID id, AccountModel actor, LocalDateTime happenedAt, Integer amount, Integer balance, LocalDateTime datetime, AccountModel account) {
+        super(id, actor, happenedAt);
+        this.amount = amount;
+        this.balance = balance;
+        this.datetime = datetime;
+        this.account = account;
     }
 
     public WithdrawModel() {
@@ -42,12 +51,12 @@ public class WithdrawModel extends Transaction {
         this.balance = balance;
     }
 
-    public AccountModel getCard() {
-        return card;
+    public AccountModel getAccount() {
+        return account;
     }
 
-    public void setCard(AccountModel card) {
-        this.card = card;
+    public void setAccount(AccountModel account) {
+        this.account = account;
     }
 
     @Override
@@ -57,7 +66,7 @@ public class WithdrawModel extends Transaction {
                 ", datetime=" + datetime +
                 ", amount=" + amount +
                 ", balance=" + balance +
-                ", card=" + card +
+                ", card=" + account +
                 ", happenedAt=" + getHappenedAt() +
                 '}';
     }

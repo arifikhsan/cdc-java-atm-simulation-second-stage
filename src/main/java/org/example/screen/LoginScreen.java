@@ -1,5 +1,6 @@
 package org.example.screen;
 
+import org.example.repository.AccountRepository;
 import org.example.screen.contract.ScreenContract;
 
 import static org.example.components.MessageComponent.*;
@@ -61,12 +62,12 @@ public class LoginScreen implements ScreenContract {
 
             println("Your PIN is " + pin);
 
-            if (!cardRepository.isExistByCardNumberAndPin(cardNumber, pin)) {
+            if (!AccountRepository.isExistByCardNumberAndPin(cardNumber, pin)) {
                 printErrorMessage("Wrong card number or PIN");
                 continue;
             }
 
-            loggedInCard = cardRepository.getAccountByNumber(cardNumber);
+            loggedInCard = AccountRepository.getAccountByNumber(cardNumber);
             printSuccessMessage("Welcome, " + loggedInCard.getName());
             gotoTransactionScreen();
             return;

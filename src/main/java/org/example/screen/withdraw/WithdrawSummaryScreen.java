@@ -37,7 +37,7 @@ public class WithdrawSummaryScreen implements ScreenContract {
         println("Summary");
         println("Date: " + withdrawModel.getDatetime().format(dateTimeFormatter));
         println("Withdraw amount: $ " + withdrawModel.getAmount());
-        println("Current Balance: $ " + withdrawModel.getCard().getBalance());
+        println("Current Balance: $ " + withdrawModel.getAccount().getBalance());
     }
 
     private void showOptionsMessage() {

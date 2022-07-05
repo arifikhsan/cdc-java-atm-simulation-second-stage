@@ -1,6 +1,8 @@
 package org.example.screen;
 
 import org.example.model.BalanceInquiryModel;
+import org.example.repository.BalanceRepository;
+import org.example.repository.TransactionRepository;
 import org.example.screen.contract.ScreenContract;
 
 import static java.lang.Integer.parseInt;
@@ -62,9 +64,8 @@ public class BalanceScreen implements ScreenContract {
     private void saveBalanceInquiryToTransaction() {
         var balance = new BalanceInquiryModel();
         balance.setActor(loggedInCard);
-        balance.setHappenedAt(getCurrentTime());
-        balance.setCard(loggedInCard);
+        balance.setAccount(loggedInCard);
         balance.setBalance(loggedInCard.getBalance());
-        transactionRepository.getTransactions().add(balance);
+        BalanceRepository.save(balance);
     }
 }
