@@ -9,14 +9,15 @@ import static org.example.router.Router.gotoWelcomeScreen;
 
 public class Main {
     public static void main(String[] args) {
-        resetCSVData();
+        configureCSVData();
         gotoWelcomeScreen();
     }
 
-    public static void resetCSVData() {
+    public static void configureCSVData() {
+        AccountRepository.validateAccounts();
+        AccountRepository.resetContents();
         BalanceRepository.clearContents();
         TransferRepository.clearContents();
         WithdrawRepository.clearContents();
-//        AccountRepository.resetContents();
     }
 }

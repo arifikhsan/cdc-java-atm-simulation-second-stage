@@ -70,7 +70,7 @@ public class WithdrawRepository {
     }
 
     public static void clearContents() {
-        var header = "Id,Amount,Balance,Datetime,AccountId,ActorId,HappenedAt";
+        var header = "Id,Amount,Balance,Datetime,AccountId,ActorId,HappenedAt" + System.lineSeparator();
         try {
             Files.writeString(path, header, TRUNCATE_EXISTING);
         } catch (IOException e) {

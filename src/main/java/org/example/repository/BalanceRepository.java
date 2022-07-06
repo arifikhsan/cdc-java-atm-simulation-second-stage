@@ -64,7 +64,7 @@ public class BalanceRepository {
     }
 
     public static void clearContents() {
-        var header = "Id,Balance,AccountId,ActorId,HappenedAt";
+        var header = "Id,Balance,AccountId,ActorId,HappenedAt" + System.lineSeparator();
         try {
             Files.writeString(path, header, TRUNCATE_EXISTING);
         } catch (IOException e) {

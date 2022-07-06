@@ -9,13 +9,6 @@ public class WithdrawModel extends Transaction {
     private LocalDateTime datetime;
     private AccountModel account;
 
-    public WithdrawModel(Integer amount, Integer balance, LocalDateTime datetime, AccountModel account) {
-        this.amount = amount;
-        this.balance = balance;
-        this.datetime = datetime;
-        this.account = account;
-    }
-
     public WithdrawModel(UUID id, AccountModel actor, LocalDateTime happenedAt, Integer amount, Integer balance, LocalDateTime datetime, AccountModel account) {
         super(id, actor, happenedAt);
         this.amount = amount;

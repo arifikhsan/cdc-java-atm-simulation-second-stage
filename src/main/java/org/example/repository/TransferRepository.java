@@ -71,7 +71,7 @@ public class TransferRepository {
     }
 
     public static void clearContents() {
-        var header = "Id,FromAccountId,ToAccountId,Amount,Datetime,Reference,ActorId,HappenedAt";
+        var header = "Id,FromAccountId,ToAccountId,Amount,Datetime,Reference,ActorId,HappenedAt" + System.lineSeparator();
         try {
             Files.writeString(path, header, TRUNCATE_EXISTING);
         } catch (IOException e) {

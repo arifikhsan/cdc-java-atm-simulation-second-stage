@@ -66,7 +66,6 @@ public class WithdrawScreen implements ScreenContract {
         withdrawModel.setBalance(loggedInCard.getBalance());
         withdrawModel.setDatetime(getCurrentTime());
         WithdrawRepository.save(withdrawModel);
-//        transactionRepository.getTransactions().add(withdrawModel);
     }
 
     private Boolean isBalanceEnough(Integer amount) {
