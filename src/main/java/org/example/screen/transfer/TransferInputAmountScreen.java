@@ -6,11 +6,10 @@ import static java.lang.Integer.parseInt;
 import static org.example.components.MessageComponent.printErrorMessage;
 import static org.example.components.MessageComponent.printTransferInputAmountMessage;
 import static org.example.data.AppData.*;
-import static org.example.router.Router.gotoTransferInputReferenceString;
 import static org.example.util.NumberUtil.*;
 import static org.example.util.SystemUtil.println;
 
-public class TransferInputAmountScreen implements ScreenContract {
+public class TransferInputAmountScreen extends ScreenContract {
     @Override
     public void show() {
         while (true) {
@@ -21,6 +20,7 @@ public class TransferInputAmountScreen implements ScreenContract {
             var amountString = scanner.nextLine();
 
             if (amountString.isEmpty()) {
+                currentScreen = transferInputAccount;
                 return;
             }
 
@@ -48,7 +48,7 @@ public class TransferInputAmountScreen implements ScreenContract {
             }
 
             transferModel.setAmount(amount);
-            gotoTransferInputReferenceString();
+            currentScreen = transferInputReference;
             return;
         }
     }

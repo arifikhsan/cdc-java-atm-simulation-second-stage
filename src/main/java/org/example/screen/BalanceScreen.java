@@ -2,17 +2,36 @@ package org.example.screen;
 
 import org.example.model.BalanceInquiryModel;
 import org.example.repository.BalanceRepository;
-import org.example.repository.TransactionRepository;
 import org.example.screen.contract.ScreenContract;
 
 import static java.lang.Integer.parseInt;
 import static org.example.components.MessageComponent.*;
-import static org.example.data.AppData.*;
+import static org.example.data.AppData.loggedInCard;
+import static org.example.data.AppData.scanner;
 import static org.example.util.SystemUtil.*;
-import static org.example.util.TimeUtil.getCurrentTime;
 
 @SuppressWarnings("DuplicatedCode")
-public class BalanceScreen implements ScreenContract {
+public class BalanceScreen extends ScreenContract {
+    private static final Integer DEFAULT_CHOICE = 1;
+
+    private void printBalance() {
+        println("Account");
+        println("Name: " + loggedInCard.getName());
+        println("Number: " + loggedInCard.getNumber());
+        println("Balance: $" + loggedInCard.getBalance());
+    }
+
+    private void showOptionMessage() {
+        printHorizontalLine();
+        println("1. Back");
+        printHorizontalLine();
+        print("Select option [1]: ");
+    }
+
+    private Boolean isValidInput(String input) {
+        return input.matches("1");
+    }
+
     @Override
     public void show() {
         while (true) {
@@ -24,41 +43,20 @@ public class BalanceScreen implements ScreenContract {
             var option = scanner.nextLine();
             printEmptyLine();
 
-            if (option.isEmpty()) option = "2";
+            if (option.isEmpty()) option = DEFAULT_CHOICE.toString();
 
             if (!isValidInput(option)) {
                 printInvalidOptionMessage(option);
                 continue;
             }
 
-            switch (parseInt(option)) {
-                case 1 -> {
-                    return;
-                }
-                case 2 -> {
-                }
-                default -> printInvalidOptionMessage(option);
+            if (parseInt(option) == 1) {
+                currentScreen = transaction;
+                return;
+            } else {
+                printInvalidOptionMessage(option);
             }
         }
-    }
-
-    private void showOptionMessage() {
-        printHorizontalLine();
-        println("1. Back");
-        println("2. Do nothing");
-        printHorizontalLine();
-        print("Select option [2]: ");
-    }
-
-    private Boolean isValidInput(String input) {
-        return input.matches("[1-2]");
-    }
-
-    private void printBalance() {
-        println("Account");
-        println("Name: " + loggedInCard.getName());
-        println("Number: " + loggedInCard.getNumber());
-        println("Balance: $" + loggedInCard.getBalance());
     }
 
     private void saveBalanceInquiryToTransaction() {

@@ -7,13 +7,28 @@ import org.example.screen.contract.ScreenContract;
 import static java.lang.Integer.parseInt;
 import static org.example.components.MessageComponent.*;
 import static org.example.data.AppData.*;
-import static org.example.router.Router.gotoWithdrawCustomScreen;
-import static org.example.router.Router.gotoWithdrawSummaryScreen;
 import static org.example.util.SystemUtil.*;
 import static org.example.util.TimeUtil.getCurrentTime;
 
 @SuppressWarnings("DuplicatedCode")
-public class WithdrawScreen implements ScreenContract {
+public class WithdrawScreen extends ScreenContract {
+    private static final Integer DEFAULT_CHOICE = 5;
+
+    private void showOptionsMessage() {
+        printHorizontalLine();
+        println("1. $10");
+        println("2. $50");
+        println("3. $100");
+        println("4. Other");
+        println("5. Back");
+        printHorizontalLine();
+        print("Select Transaction [" + DEFAULT_CHOICE + "]: ");
+    }
+
+    private Boolean isInvalidInput(String input) {
+        return !input.matches("[1-5]");
+    }
+
     @Override
     public void show() {
         while (true) {
@@ -22,7 +37,7 @@ public class WithdrawScreen implements ScreenContract {
             showOptionsMessage();
 
             var option = scanner.nextLine();
-            if (option.isEmpty()) option = "5";
+            if (option.isEmpty()) option = DEFAULT_CHOICE.toString();
 
             if (isInvalidInput(option)) {
                 printInvalidOptionMessage(option);
@@ -30,14 +45,24 @@ public class WithdrawScreen implements ScreenContract {
             }
 
             switch (parseInt(option)) {
-                case 1 -> withdraw(10);
-                case 2 -> withdraw(50);
-                case 3 -> withdraw(100);
+                case 1 -> {
+                    withdraw(10);
+                    return;
+                }
+                case 2 -> {
+                    withdraw(50);
+                    return;
+                }
+                case 3 -> {
+                    withdraw(100);
+                    return;
+                }
                 case 4 -> {
-                    gotoWithdrawCustomScreen();
+                    currentScreen = otherWithdraw;
                     return;
                 }
                 case 5 -> {
+                    currentScreen = transaction;
                     return;
                 }
                 default -> printInvalidOptionMessage(option);
@@ -47,14 +72,14 @@ public class WithdrawScreen implements ScreenContract {
 
     private void withdraw(Integer amount) {
         if (!isBalanceEnough(amount)) {
-            printErrorMessage("Insufficient withdraw balance $" + amount + ". Current balance is $" + loggedInCard.getBalance());
+            printErrorMessage("Insufficient withdraw balance $" + amount);
             return;
         }
 
         saveWithdrawData(amount);
         printEmptyLine();
         printSuccessMessage("Withdraw success!");
-        gotoWithdrawSummaryScreen();
+        currentScreen = summaryWithdraw;
     }
 
     private void saveWithdrawData(Integer amount) {
@@ -76,20 +101,5 @@ public class WithdrawScreen implements ScreenContract {
         printHorizontalLine();
         println("Your balance: $ " + loggedInCard.getBalance());
         printHorizontalLine();
-    }
-
-    private void showOptionsMessage() {
-        printHorizontalLine();
-        println("1. $10");
-        println("2. $50");
-        println("3. $100");
-        println("4. Other");
-        println("5. Back");
-        printHorizontalLine();
-        print("Select Transaction [5]: ");
-    }
-
-    private Boolean isInvalidInput(String input) {
-        return !input.matches("[1-5]");
     }
 }

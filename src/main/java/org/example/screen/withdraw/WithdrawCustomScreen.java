@@ -7,7 +7,6 @@ import org.example.screen.contract.ScreenContract;
 import static java.lang.Integer.parseInt;
 import static org.example.components.MessageComponent.*;
 import static org.example.data.AppData.*;
-import static org.example.router.Router.gotoWithdrawSummaryScreen;
 import static org.example.util.NumberUtil.isGreaterThan1000;
 import static org.example.util.NumberUtil.isMultiplyOf10;
 import static org.example.util.StringUtil.isValidAmountOfMoney;
@@ -16,7 +15,7 @@ import static org.example.util.SystemUtil.printEmptyLine;
 import static org.example.util.TimeUtil.getCurrentTime;
 
 @SuppressWarnings("DuplicatedCode")
-public class WithdrawCustomScreen implements ScreenContract {
+public class WithdrawCustomScreen extends ScreenContract {
     @Override
     public void show() {
         while (true) {
@@ -56,7 +55,7 @@ public class WithdrawCustomScreen implements ScreenContract {
         saveWithdrawData(amount);
         printEmptyLine();
         printSuccessMessage("Withdraw success!");
-        gotoWithdrawSummaryScreen();
+        currentScreen = summaryWithdraw;
     }
 
     private void saveWithdrawData(int amount) {

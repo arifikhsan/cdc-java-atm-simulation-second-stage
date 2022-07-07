@@ -16,7 +16,20 @@ import static org.example.data.AppData.scanner;
 import static org.example.util.SystemUtil.*;
 
 @SuppressWarnings("DuplicatedCode")
-public class TransactionHistoryScreen implements ScreenContract {
+public class TransactionHistoryScreen extends ScreenContract {
+    private static final Integer DEFAULT_CHOICE = 1;
+
+    private void showOptionMessage() {
+        printHorizontalLine();
+        println("1. Back");
+        printHorizontalLine();
+        print("Select option ["+DEFAULT_CHOICE+"]: ");
+    }
+
+    private Boolean isValidInput(String input) {
+        return input.matches(DEFAULT_CHOICE.toString());
+    }
+
     @Override
     public void show() {
         while (true) {
@@ -27,34 +40,15 @@ public class TransactionHistoryScreen implements ScreenContract {
             var option = scanner.nextLine();
             printEmptyLine();
 
-            if (option.isEmpty()) option = "2";
+            if (option.isEmpty() || parseInt(option) == DEFAULT_CHOICE) {
+                currentScreen = transaction;
+                return;
+            }
 
             if (!isValidInput(option)) {
                 printInvalidOptionMessage(option);
-                continue;
-            }
-
-            switch (parseInt(option)) {
-                case 1 -> {
-                    return;
-                }
-                case 2 -> {
-                }
-                default -> printInvalidOptionMessage(option);
             }
         }
-    }
-
-    private void showOptionMessage() {
-        printHorizontalLine();
-        println("1. Back");
-        println("2. Do nothing");
-        printHorizontalLine();
-        print("Select option [2]: ");
-    }
-
-    private Boolean isValidInput(String input) {
-        return input.matches("[1-2]");
     }
 
     private void printTransactionHistory() {

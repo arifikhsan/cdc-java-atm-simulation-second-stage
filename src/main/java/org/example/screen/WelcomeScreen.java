@@ -5,13 +5,11 @@ import org.example.screen.contract.ScreenContract;
 import static java.lang.Integer.parseInt;
 import static org.example.components.MessageComponent.*;
 import static org.example.data.AppData.scanner;
-import static org.example.router.Router.gotoLoginScreen;
 import static org.example.util.NumberUtil.isAStringNumber;
 import static org.example.util.NumberUtil.isPositive;
 import static org.example.util.SystemUtil.*;
 
-public class WelcomeScreen implements ScreenContract {
-
+public class WelcomeScreen extends ScreenContract {
     @Override
     public void show() {
         //noinspection InfiniteLoopStatement
@@ -30,7 +28,7 @@ public class WelcomeScreen implements ScreenContract {
 
             switch (parseInt(option)) {
                 case 1: {
-                    gotoLoginScreen();
+                    currentScreen = welcome;
                     continue;
                 }
                 case 2: {

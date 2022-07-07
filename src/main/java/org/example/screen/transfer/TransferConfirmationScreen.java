@@ -6,12 +6,35 @@ import org.example.screen.contract.ScreenContract;
 import static java.lang.Integer.parseInt;
 import static org.example.components.MessageComponent.*;
 import static org.example.data.AppData.*;
-import static org.example.router.Router.gotoSummaryScreen;
 import static org.example.util.NumberUtil.isAStringNumber;
 import static org.example.util.NumberUtil.isPositive;
 import static org.example.util.SystemUtil.*;
 
-public class TransferConfirmationScreen implements ScreenContract {
+public class TransferConfirmationScreen extends ScreenContract {
+    private static final Integer DEFAULT_CHOICE = 2;
+
+    private void showSummary() {
+        printHorizontalLine();
+        println("Destination Account: " + transferModel.getToAccount().getNumber());
+        println("Amount: $" + transferModel.getAmount());
+        println("Reference Number: " + transferModel.getReference());
+        printHorizontalLine();
+    }
+
+    private void showOptionMessage() {
+        printHorizontalLine();
+        printEmptyLine();
+        println("1. Confirm Transaction");
+        println("2. Cancel Transaction");
+        printEmptyLine();
+        printHorizontalLine();
+        print("Choose option ["+DEFAULT_CHOICE+"]: ");
+    }
+
+    private boolean isIncludedInOption(String option) {
+        return option.matches("[1-3]");
+    }
+
     @Override
     public void show() {
         while (true) {
@@ -22,7 +45,7 @@ public class TransferConfirmationScreen implements ScreenContract {
             var option = scanner.nextLine();
             printEmptyLine();
 
-            if (option.isEmpty()) option = "2";
+            if (option.isEmpty()) option = DEFAULT_CHOICE.toString();
 
             if (!isValidOption(option)) {
                 printInvalidInputMessage();
@@ -32,9 +55,11 @@ public class TransferConfirmationScreen implements ScreenContract {
             if (parseInt(option) == 1) {
                 transferMoney();
                 printSuccessMessage("Transfer successful");
-                gotoSummaryScreen();
+                currentScreen = transferSummary;
+                return;
             }
 
+            currentScreen = transaction;
             return;
         }
     }
@@ -50,27 +75,5 @@ public class TransferConfirmationScreen implements ScreenContract {
 
     private boolean isValidOption(String option) {
         return isAStringNumber(option) && isPositive(parseInt(option)) && isIncludedInOption(option);
-    }
-
-    private boolean isIncludedInOption(String option) {
-        return option.matches("[1-3]");
-    }
-
-    private void showOptionMessage() {
-        printHorizontalLine();
-        println();
-        println("1. Confirm Transaction");
-        println("2. Cancel Transaction");
-        println();
-        printHorizontalLine();
-        print("Choose option [2]: ");
-    }
-
-    private void showSummary() {
-        printHorizontalLine();
-        println("Destination Account: " + transferModel.getToAccount().getNumber());
-        println("Amount: $" + transferModel.getAmount());
-        println("Reference Number: " + transferModel.getReference());
-        printHorizontalLine();
     }
 }

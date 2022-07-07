@@ -4,14 +4,14 @@ import org.example.repository.AccountRepository;
 import org.example.screen.contract.ScreenContract;
 
 import static org.example.components.MessageComponent.*;
-import static org.example.data.AppData.*;
-import static org.example.router.Router.gotoTransactionScreen;
+import static org.example.data.AppData.loggedInCard;
+import static org.example.data.AppData.scanner;
 import static org.example.util.NumberUtil.isAStringNumber;
 import static org.example.util.StringUtil.isExact6Digits;
 import static org.example.util.SystemUtil.print;
 import static org.example.util.SystemUtil.println;
 
-public class LoginScreen implements ScreenContract {
+public class LoginScreen extends ScreenContract {
     @Override
     public void show() {
         String cardNumber;
@@ -69,7 +69,7 @@ public class LoginScreen implements ScreenContract {
 
             loggedInCard = AccountRepository.getAccountByNumber(cardNumber);
             printSuccessMessage("Welcome, " + loggedInCard.getName());
-            gotoTransactionScreen();
+            currentScreen = transaction;
             return;
         }
     }

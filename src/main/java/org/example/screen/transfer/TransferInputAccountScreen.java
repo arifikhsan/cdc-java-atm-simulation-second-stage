@@ -6,11 +6,10 @@ import org.example.screen.contract.ScreenContract;
 import static org.example.components.MessageComponent.printErrorMessage;
 import static org.example.components.MessageComponent.printTransferInputAccountMessage;
 import static org.example.data.AppData.*;
-import static org.example.router.Router.gotoTransferInputAmountScreen;
 import static org.example.util.StringUtil.isValidAccountNumber;
 import static org.example.util.SystemUtil.println;
 
-public class TransferInputAccountScreen implements ScreenContract {
+public class TransferInputAccountScreen extends ScreenContract {
     @Override
     public void show() {
         while (true) {
@@ -21,6 +20,7 @@ public class TransferInputAccountScreen implements ScreenContract {
             var destinationAccountNumber = scanner.nextLine();
 
             if (destinationAccountNumber.isEmpty()) {
+                currentScreen = transaction;
                 return;
             }
 
@@ -42,7 +42,7 @@ public class TransferInputAccountScreen implements ScreenContract {
             var destinationAccount = AccountRepository.getAccountByNumber(destinationAccountNumber);
             transferModel.setFromAccount(loggedInCard);
             transferModel.setToAccount(destinationAccount);
-            gotoTransferInputAmountScreen();
+            currentScreen = transferInputAmount;
             return;
         }
     }
